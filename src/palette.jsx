@@ -1,0 +1,12 @@
+import React,{useEffect,useState,useRef} from 'react';
+const go=h=>()=>document.querySelector(h)?.scrollIntoView({behavior:'smooth'});
+const ext=u=>()=>window.open(u,'_blank','noopener');
+const items=[['Home',go('#home')],['About',go('#about')],['Experience',go('#experience')],['Projects',go('#projects')],['DataMind AI case study',go('#datamind')],['Skills',go('#skills')],['Contact',go('#contact')],['Download resume',()=>{const a=document.createElement('a');a.href='/resume.pdf';a.download='';a.click()}],['Open DataMind AI live app',ext('https://data-mind-ai-tau.vercel.app/')],['DataMind AI source code',ext('https://github.com/gautamkumar369/DataMind-AI')],['LinkedIn',ext('https://www.linkedin.com/in/gautamtechanalyst/')]];
+export default function Palette(){const[open,setOpen]=useState(false);const[q,setQ]=useState('');const[i,setI]=useState(0);const ref=useRef();
+const list=items.filter(([t])=>t.toLowerCase().includes(q.toLowerCase()));
+const show=()=>{setOpen(true);setQ('');setI(0)};
+useEffect(()=>{const k=e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();setOpen(o=>!o);setQ('');setI(0)}else if(e.key==='Escape')setOpen(false)};addEventListener('keydown',k);return()=>removeEventListener('keydown',k)},[]);
+useEffect(()=>{if(open)ref.current?.focus()},[open]);
+const run=it=>{setOpen(false);setTimeout(it[1],60)};
+const nav=e=>{if(e.key==='ArrowDown'){e.preventDefault();setI(x=>Math.min(x+1,list.length-1))}else if(e.key==='ArrowUp'){e.preventDefault();setI(x=>Math.max(x-1,0))}else if(e.key==='Enter'&&list[i])run(list[i])};
+return <><button className="pal-fab" onClick={show}>Quick jump <kbd>Ctrl K</kbd></button>{open&&<div className="pal-back" onMouseDown={()=>setOpen(false)}><div className="pal" role="dialog" aria-label="Quick jump" onMouseDown={e=>e.stopPropagation()}><input ref={ref} value={q} placeholder="Jump to a section or open a link…" onChange={e=>{setQ(e.target.value);setI(0)}} onKeyDown={nav}/><ul>{list.map((it,n)=><li key={it[0]} className={n===i?'on':''} onMouseEnter={()=>setI(n)} onClick={()=>run(it)}>{it[0]}</li>)}{!list.length&&<li className="none">No results</li>}</ul><div className="pal-hint">↑↓ move · Enter open · Esc close</div></div></div>}</>}
