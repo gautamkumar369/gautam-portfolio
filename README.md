@@ -1,43 +1,33 @@
-# Gautam Kumar — Personal Portfolio
+# Gautam Kumar — Data Analyst Portfolio
 
-Responsive React + Vite portfolio for Data Analytics, Data Quality, Data Engineering, and AI projects.
+A responsive React + Vite portfolio showcasing data quality, analytics, cloud workflows, and DataMind AI.
+
+## Highlights
+- Lavender/plum visual redesign with responsive layouts and project filtering
+- Animated SVG analytics line chart, moving data point, and pulsing bar chart
+- Resume download helper that fetches the same-origin PDF and triggers a named download
+- Experience, skills, projects, DataMind AI case study, and contact sections
+- Respects reduced-motion preferences for chart animations
 
 ## Run locally
-Requires Node.js 20.19+ or 22.12+ (Vite 7 requirement).
+Requires Node.js 18+ and npm.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Production build:
+## Production build
+
 ```bash
 npm run build
 npm run preview
 ```
 
-## Add your professional photo
-The hero currently has a stylized GK photo placeholder. To use your photo, put it at `public/profile.jpg`, then replace the `portrait-placeholder` div in `src/main.jsx` with:
-```jsx
-<img className="profile-photo" src="/profile.jpg" alt="Gautam Kumar" />
-```
-Add this CSS:
-```css
-.profile-photo { width:69%; height:78%; object-fit:cover; border-radius:150px 150px 24px 24px; position:relative; z-index:1; }
-```
+The static build is created in `dist/`. Deploy on Vercel with Framework Preset `Vite`, Build Command `npm run build`, and Output Directory `dist`.
 
-## Resume
-`public/resume.pdf` is included as a starter resume built from previously provided career details. Review dates, claims, and project status before using it in applications. Replace it with your latest verified resume PDF, keeping the filename `resume.pdf` so download links keep working. No phone or email was invented.
+## Resume and profile image
+Keep `public/resume.pdf` and `public/profile.jpg` in place. The site links to `/resume.pdf` and `/profile.jpg`.
 
-## Deploy on Vercel (free plan)
-1. Push this folder to a new GitHub repository.
-2. Import the repository at https://vercel.com/new.
-3. Framework preset: **Vite**; build command: `npm run build`; output directory: `dist`.
-4. No environment variables are required for this static portfolio.
-5. Deploy; Vercel will provide a `*.vercel.app` URL.
-
-Before publishing, review the resume, add your professional photo, and confirm project claims accurately reflect current functionality.
-
-
-## Updated resume
-Replace `public/resume.pdf` with your latest verified resume PDF before publishing. Keep the filename `resume.pdf` so both download links continue working. The updated local PDF shown in your screenshot is not included automatically; copy it into this folder and overwrite the starter PDF.
+## Updating the deployed site
+Commit and push your changes to the connected GitHub `main` branch; Vercel will redeploy automatically.

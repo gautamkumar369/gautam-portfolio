@@ -14,7 +14,7 @@ useEffect(()=>{const fine=matchMedia('(pointer:fine)').matches;if(fine)document.
 const mv=e=>{if(!e.target.closest)return;
 if(fine){const t=`translate(${e.clientX}px,${e.clientY}px)`;dot.current.style.transform=t;ring.current.style.transform=t;ring.current.classList.toggle('big',!!e.target.closest('a,button,[role=button]'))}
 const sp=e.target.closest('.stat-card,.skill-card,.timeline-content,.education-card');if(sp){const r=sp.getBoundingClientRect();sp.style.setProperty('--mx',e.clientX-r.left+'px');sp.style.setProperty('--my',e.clientY-r.top+'px')}
-const mg=e.target.closest('.button,.nav-cta');document.querySelectorAll('.magnet').forEach(el=>{if(el!==mg){el.style.transform='';el.classList.remove('magnet')}});
+const mg=e.target.closest('.button:not(.nav-cta)');document.querySelectorAll('.magnet').forEach(el=>{if(el!==mg){el.style.transform='';el.classList.remove('magnet')}});
 if(mg){mg.classList.add('magnet');const r=mg.getBoundingClientRect();mg.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.3}px)`}
 const fr=document.querySelector('.portrait-frame');if(fr){const r=fr.getBoundingClientRect();if(e.clientY>r.top-200&&e.clientY<r.bottom+200){fr.style.transform=`perspective(900px) rotateY(${((e.clientX-r.left)/r.width-.5)*10}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*8}deg)`}}};
 addEventListener('mousemove',mv);
